@@ -2,32 +2,31 @@ import PriceCards from '@/components/PriceCards';
 import Calculator from '@/components/Calculator';
 
 export const metadata = {
-  title: 'Live Metal Prices — Fairweight',
-  description: 'Live gold, silver, and platinum spot prices updated every 90 seconds. Use our value calculator to estimate what your items are worth.',
+  title: 'Live Gold & Silver Spot Prices — Fairweight',
+  description: 'Live gold, silver and platinum spot prices plus a value calculator. Fairweight buys gold & silver across the DMV. Call or text 240-825-9001.',
 };
 
 export default function PricesPage() {
   return (
     <>
-      <div className="page-hero">
-        <span className="deco-label center">Live Spot</span>
-        <h1>Today&rsquo;s <span className="gold-text">Metal Prices</span></h1>
-        <p>Refreshed every 90 seconds from a live public feed. Call us to lock your price — 240-825-9001.</p>
-        <div className="ornament"><i /><div className="dia" /><i /></div>
-      </div>
+      <section className="page-hero">
+        <span className="deco-label center">Live Pricing</span>
+        <h1>Today&rsquo;s <span className="gold-text">spot prices</span></h1>
+        <p>Live gold, silver and platinum rates, refreshed throughout the day. Use the calculator below for a quick estimate &mdash; then call or text us to lock in your offer.</p>
+      </section>
 
-      <section className="band">
+      <section className="band alt" id="spot">
         <div className="wrap">
           <PriceCards />
         </div>
       </section>
 
-      <section className="band alt">
+      <section className="band light" id="calc">
         <div className="wrap">
-          <div className="band-head">
-            <span className="deco-label center">Calculator</span>
-            <h2 className="section-title">Estimate Your Value</h2>
-            <p className="lede">Enter your item&rsquo;s weight and karat to see its pure metal value at today&rsquo;s spot price.</p>
+          <div className="band-head reveal">
+            <span className="deco-label center">Estimate Your Value</span>
+            <h2 className="section-title">What&rsquo;s your gold &amp; silver worth?</h2>
+            <p className="lede">Enter the spot price, weight, and purity for a quick ballpark. For an exact, no-obligation offer, just call or text us.</p>
           </div>
           <Calculator />
         </div>

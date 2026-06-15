@@ -64,9 +64,5 @@ export default function DmvMap() {
     return () => { instanceRef.current?.remove(); instanceRef.current = null; };
   }, []);
 
-  return (
-    <div className="map-shell">
-      <div ref={mapRef} id="dmv-map" />
-    </div>
-  );
+  return <div ref={mapRef} id="dmv-map" />;
 }

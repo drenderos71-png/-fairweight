@@ -2,41 +2,24 @@
 import { useState } from 'react';
 
 const FAQS = [
-  {
-    q: 'How do I get a quote?',
-    a: 'Just call or text us at 240-825-9001. We can give you a ballpark over the phone or text, then meet at a location convenient for you for a final appraisal with certified scales and acid/XRF testing.',
-  },
-  {
-    q: 'Where do we meet?',
-    a: "We come to you anywhere in the DMV — your home, a coffee shop, or another public spot. We serve DC, Maryland (Prince George's, Montgomery, Howard, Anne Arundel counties and more), and Northern Virginia.",
-  },
-  {
-    q: 'What items do you buy?',
-    a: "Gold jewelry (all karats), silver jewelry and flatware, gold and silver coins, bullion bars, dental gold, platinum jewelry, and more. When in doubt, call — if it's precious metal, we're interested.",
-  },
-  {
-    q: 'How is the price set?',
-    a: "We pay a percentage of the live spot price. The exact percentage depends on karat, condition, and weight. We show you the scale and our math so you know exactly what you're getting.",
-  },
-  {
-    q: 'Do you buy broken or damaged jewelry?',
-    a: 'Yes. Broken chains, bent rings, tangled bracelets — the metal content is what matters, not the condition.',
-  },
-  {
-    q: 'How are you different from a pawn shop or mail-in service?',
-    a: 'We come to you (no pawn-shop visit), pay same-day cash, use certified scales, and show our work. Mail-in services make you wait weeks and ship your valuables through the mail.',
-  },
+  { q: 'How do you decide what my gold or silver is worth?', a: 'We weigh each piece in front of you and price it against the current market (spot) rate for that metal and purity. No guesswork and no hidden cuts — you see exactly how the offer is calculated.' },
+  { q: 'Do I have to come to you?', a: 'No — we are fully mobile. We come to your home or a public place you are comfortable with, anywhere in the DMV. No appointment runaround.' },
+  { q: 'How fast do I get paid?', a: 'Same visit. Once you accept the offer, you are paid in cash on the spot — no checks, no holds, no waiting.' },
+  { q: 'What kinds of items do you buy?', a: 'Gold and silver in any form — coins, bars, jewelry, chains, scrap, broken pieces, and sterling flatware. We also buy platinum. New, used, old or broken, it all has value.' },
+  { q: 'Will you pay off my pawned items?', a: 'Yes. We can pay off pawned gold or silver and pay you on top of what is owed. Bring your ticket and we will walk through the numbers with you.' },
+  { q: 'Is there a minimum amount?', a: 'No minimum. Whether it is a single ring or an entire estate, we will take a look and give you a free quote.' },
+  { q: 'How do I get started?', a: 'Call or text 240-825-9001 with a quick description of what you have, and we will set up a time that works for you.' },
 ];
 
 export default function FaqAccordion() {
   const [open, setOpen] = useState(null);
   return (
-    <div className="faq-list">
+    <div className="faq-list reveal">
       {FAQS.map((f, i) => (
         <div key={i} className={`faq-item${open === i ? ' open' : ''}`}>
-          <button className="faq-q" onClick={() => setOpen(open === i ? null : i)}>
+          <button className="faq-q" type="button" onClick={() => setOpen(open === i ? null : i)}>
             {f.q}
-            <span className="pm" />
+            <span className="pm" aria-hidden="true" />
           </button>
           <div className="faq-a" style={{ maxHeight: open === i ? 400 : 0 }}>
             <div className="faq-a-inner">{f.a}</div>

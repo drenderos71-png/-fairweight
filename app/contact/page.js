@@ -2,77 +2,86 @@ import QuoteForm from '@/components/QuoteForm';
 import FaqAccordion from '@/components/FaqAccordion';
 
 export const metadata = {
-  title: 'Contact Fairweight — Get a Free Quote',
-  description: 'Text or call for a free, no-pressure appraisal. We buy gold, silver, and platinum across the DMV. 240-825-9001.',
+  title: 'Contact — Call or Text 240-825-9001 | Fairweight',
+  description: 'Get a free, no-obligation quote from Fairweight. Mobile gold and silver buyer serving the DMV. Call or text 240-825-9001 for same-day cash.',
 };
 
 export default function ContactPage() {
   return (
     <>
-      <div className="page-hero">
-        <span className="deco-label center">Get in Touch</span>
-        <h1>Get Your <span className="gold-text">Free Quote</span></h1>
-        <p>Fill in a few details below and we&rsquo;ll get back to you fast — or just call us directly at 240-825-9001.</p>
-        <div className="ornament"><i /><div className="dia" /><i /></div>
-      </div>
+      <section className="page-hero">
+        <span className="deco-label center">Get In Touch</span>
+        <h1>Get a <span className="gold-text">free quote</span></h1>
+        <p>Call or text us and we will come to you with a fair, no-pressure quote &mdash; same-day cash, anywhere in the DMV.</p>
+      </section>
 
-      {/* Quote form */}
-      <section className="band">
+      <section className="mobile-strip">
         <div className="wrap">
-          <div className="quote-grid">
-            <div className="quote-aside">
-              <span className="deco-label">Contact Us</span>
-              <h2 className="section-title">Fast, Free<br /><span className="gold-text">No Pressure</span></h2>
-              <p className="lede">Send us a quick text with your items, or just call. We typically respond within minutes during business hours.</p>
-              <ul className="quote-points">
-                {[
-                  { icon: 'check', text: 'Free appraisal — no cost, no obligation' },
-                  { icon: 'map', text: 'We come to you anywhere in the DMV' },
-                  { icon: 'clock', text: 'Same-day appointments available' },
-                  { icon: 'cash', text: 'Cash paid on the spot' },
-                ].map(({ icon, text }) => (
-                  <li key={text}>
-                    <span className="qd">
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--gold)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </span>
-                    {text}
-                  </li>
-                ))}
-              </ul>
-              <div className="quote-phone">
-                <span className="small">Call or Text Direct</span>
-                <a href="tel:12408259001">240-825-9001</a>
-              </div>
-            </div>
-            <QuoteForm />
-          </div>
+          <span className="ms-ic">
+            <svg viewBox="0 0 24 24"><path d="M2 7h11v8H2z"/><path d="M13 10h4l3 3v2h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>
+          </span>
+          <span className="ms-text">
+            <strong>We Come To You &mdash; No Storefront Needed</strong>
+            <span>Fully mobile gold &amp; silver buying across the entire DMV. Free in-person quotes at your door.</span>
+          </span>
+          <a className="ms-cta" href="tel:+12408259001">Call or Text 240-825-9001</a>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="band alt">
+      <section className="band light" id="quote">
+        <div className="wrap quote-grid">
+          <div className="quote-aside reveal">
+            <span className="deco-label">No Obligation</span>
+            <h2 className="section-title">Tell us what you have</h2>
+            <p className="lede">Not sure what your items are worth? Send a few details and we will get back to you with a free, no-pressure estimate &mdash; or just call us now.</p>
+            <ul className="quote-points">
+              {['Free evaluation, no commitment', 'We respond fast — usually same day', 'Same-day cash, anywhere in the DMV'].map((t) => (
+                <li key={t}>
+                  <span className="qd"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span> {t}
+                </li>
+              ))}
+            </ul>
+            <div className="quote-phone">
+              <span className="small">Call or Text</span>
+              <a href="tel:+12408259001">240-825-9001</a>
+            </div>
+            <div className="meet">
+              <div className="portrait">
+                <span className="gk-border" aria-hidden="true" />
+                <div className="img-wrap" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '3/4', color: 'var(--muted)', fontSize: '0.62rem', letterSpacing: '0.1em' }}>PHOTO</div>
+              </div>
+              <div className="meet-who">
+                <span className="eyebrow-sm">Meet Your Buyer</span>
+                <h4>Your Brother&rsquo;s Name</h4>
+                <span className="role">Founder &amp; Buyer</span>
+                <p>When you reach out, you deal directly with me &mdash; not a salesperson. I come to you anywhere in the DMV.</p>
+              </div>
+            </div>
+          </div>
+          <QuoteForm />
+        </div>
+      </section>
+
+      <section className="band alt" id="faq">
         <div className="wrap">
-          <div className="band-head">
-            <span className="deco-label center">FAQ</span>
-            <h2 className="section-title">Common Questions</h2>
+          <div className="band-head reveal">
+            <span className="deco-label center">Got Questions?</span>
+            <h2 className="section-title">Frequently asked questions</h2>
           </div>
           <FaqAccordion />
         </div>
       </section>
 
-      {/* Big CTA */}
       <section className="contact">
-        <div className="wrap">
-          <div className="ornament"><i /><div className="dia" /><i /></div>
-          <h2>Still have questions?<br /><span className="gold-text">Just call.</span></h2>
-          <p className="sub">We&rsquo;re real people. Call or text and we&rsquo;ll answer right away.</p>
-          <a href="tel:12408259001" className="phone-btn">
-            <span className="label">Call or Text Anytime</span>
+        <div className="wrap reveal">
+          <span className="deco-label center">Ready When You Are</span>
+          <h2 style={{ marginTop: 18 }}>Turn gold &amp; silver<br />into <span className="gold-text">cash today</span></h2>
+          <p className="sub">Call or text us &mdash; we will come to you with a fair, no-pressure quote.</p>
+          <a className="phone-btn" href="tel:+12408259001">
+            <span className="label">Call or Text</span>
             <span className="number">240-825-9001</span>
           </a>
-          <p className="loc">Hyattsville, MD · Serving DC, Maryland &amp; Northern Virginia</p>
+          <p className="loc">Hyattsville, MD &middot; Serving the DMV</p>
         </div>
       </section>
     </>

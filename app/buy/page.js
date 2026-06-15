@@ -1,44 +1,57 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: 'What We Buy — Fairweight Gold & Silver',
-  description: 'We buy gold jewelry, silver flatware, coins, bullion bars, dental gold, and more. Certified testing, live spot prices, same-day cash.',
+  title: 'What We Buy — Gold, Silver & Platinum | Fairweight',
+  description: 'Fairweight buys gold, silver and platinum in any form — coins, bullion, jewelry, chains, scrap and broken pieces — across the DMV. Call or text 240-825-9001.',
 };
 
-const ITEMS = [
-  { cap: 'Gold Jewelry', sub: 'All karats' },
-  { cap: 'Silver Jewelry', sub: 'Sterling & fine' },
-  { cap: 'Gold Coins', sub: 'Bullion & numismatic' },
-  { cap: 'Silver Coins', sub: 'Junk, ASE, Morgans' },
-  { cap: 'Bullion Bars', sub: 'Gold & silver' },
-  { cap: 'Silver Flatware', sub: 'Sterling sets' },
-  { cap: 'Dental Gold', sub: 'Crowns & bridges' },
-  { cap: 'Platinum', sub: 'Jewelry & settings' },
+const GALLERY = [
+  { cap: 'Coins & Bullion', sub: 'Eagles · Krugerrands · Bars' },
+  { cap: 'Jewelry & Chains', sub: 'Rings · Necklaces · Bracelets' },
+  { cap: 'Old & Broken', sub: 'Scrap · Single earrings · Dental' },
+  { cap: 'Silver & Flatware', sub: 'Sterling · Sets · Coins' },
 ];
+
+const VERIFY = [
+  'Purity tested & confirmed before any offer',
+  'Weighed openly on a calibrated scale',
+  'Priced from the live spot rate — shown to you',
+  'No pressure, no surprises, paid in cash',
+];
+
+const PhotoPlate = () => (
+  <div className="img-wrap" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '4/3', color: 'var(--muted)', fontSize: '0.72rem', letterSpacing: '0.1em' }}>PHOTO</div>
+);
 
 export default function BuyPage() {
   return (
     <>
-      <div className="page-hero">
+      <section className="page-hero">
         <span className="deco-label center">What We Buy</span>
-        <h1>Gold, Silver <span className="gold-text">&amp; More</span></h1>
-        <p>From everyday jewelry to investment bullion — if it&rsquo;s precious metal, we want to see it.</p>
-        <div className="ornament"><i /><div className="dia" /><i /></div>
-      </div>
+        <h1>Gold &amp; silver, <span className="gold-text">in any form</span></h1>
+        <p>From a single broken chain to an entire estate &mdash; bring it on. We buy gold, silver and platinum in every condition, new or old.</p>
+        <div className="ornament"><i /><span className="dia" /><i /></div>
+      </section>
 
-      {/* Gallery */}
-      <section className="band">
+      <section className="mobile-strip">
         <div className="wrap">
-          <div className="band-head">
-            <span className="deco-label center">We Buy</span>
-            <h2 className="section-title">Every Category of<br /><span className="gold-text">Precious Metal</span></h2>
-          </div>
+          <span className="ms-ic">
+            <svg viewBox="0 0 24 24"><path d="M2 7h11v8H2z"/><path d="M13 10h4l3 3v2h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>
+          </span>
+          <span className="ms-text">
+            <strong>We Come To You &mdash; No Storefront Needed</strong>
+            <span>Fully mobile gold &amp; silver buying across the entire DMV. Free in-person quotes at your door.</span>
+          </span>
+          <a className="ms-cta" href="tel:+12408259001">Call or Text 240-825-9001</a>
+        </div>
+      </section>
+
+      <section className="band light" id="buy">
+        <div className="wrap">
           <div className="gallery-grid">
-            {ITEMS.map(({ cap, sub }) => (
-              <div key={cap} className="gphoto">
-                <div className="gphoto-img" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--panel)', color: 'var(--muted)', fontSize: '0.72rem', letterSpacing: '0.12em' }}>
-                  PHOTO
-                </div>
+            {GALLERY.map(({ cap, sub }) => (
+              <div key={cap} className="gphoto reveal">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '1/1', border: '1px solid var(--line)', color: 'var(--muted)', fontSize: '0.7rem', letterSpacing: '0.1em' }}>PHOTO</div>
                 <span className="cap">{cap}<small>{sub}</small></span>
               </div>
             ))}
@@ -46,100 +59,75 @@ export default function BuyPage() {
         </div>
       </section>
 
-      {/* Premium Bullion */}
-      <section className="band alt">
-        <div className="wrap">
-          <div className="bullion-grid">
-            <div className="bullion-plate">
-              <div className="gk-border" />
-              <div className="img-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>PHOTO</div>
-            </div>
-            <div className="bullion-copy">
-              <span className="deco-label">Bullion Specialists</span>
-              <h2 className="section-title">We Pay <span className="gold-text">Premiums</span><br />on Bullion</h2>
-              <p className="lede">Recognized mint product — American Gold Eagles, Canadian Maple Leafs, PAMP bars, Engelhard rounds — commands a premium above melt. We know the difference and pay accordingly.</p>
-              <ul className="precision-list">
-                {['American Gold & Silver Eagles', 'Canadian Maple Leafs', 'PAMP Suisse & Credit Suisse bars', 'Morgan & Peace silver dollars', 'Pre-1933 U.S. gold coins', 'Engelhard & Johnson Matthey rounds'].map(item => (
-                  <li key={item}>
-                    <span className="pc-check">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="bullion-actions">
-                <a href="tel:12408259001" className="btn-gold">Get a Bullion Quote</a>
-                <Link href="/prices" className="btn-ghost">See Live Prices</Link>
-              </div>
+      <section className="band alt" id="bullion">
+        <div className="wrap bullion-grid">
+          <div className="bullion-plate reveal">
+            <span className="gk-border" aria-hidden="true" />
+            <PhotoPlate />
+          </div>
+          <div className="bullion-copy reveal">
+            <span className="deco-label">Gold Bars &amp; Coins</span>
+            <h2 className="section-title">We buy &amp; sell<br /><span className="gold-text">premium bullion</span></h2>
+            <p className="lede">From 1&nbsp;oz bars to American Gold Eagles, Krugerrands, and Maple Leafs &mdash; we deal in the world&rsquo;s most trusted gold and silver products. Bring yours in for a live, spot-based offer, or let us help you buy.</p>
+            <div className="bullion-actions">
+              <a className="btn-gold" href="tel:+12408259001">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                Sell or Buy Bullion
+              </a>
+              <Link className="btn-ghost" href="/prices">Estimate Value</Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* How We Verify */}
-      <section className="precision band">
-        <div className="wrap">
-          <div className="precision-grid">
-            <div className="precision-plate">
-              <div className="gk-border" />
-              <div className="img-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>PHOTO</div>
-            </div>
-            <div className="precision-copy">
-              <span className="deco-label">Our Process</span>
-              <h2 className="section-title">Precision <span className="gold-text">Testing</span><br />You Can Watch</h2>
-              <p className="lede">Every item is tested in front of you. No black boxes, no back rooms — the scale faces you and the results are yours to see.</p>
-              <ul className="precision-list">
-                {['Calibrated digital scales (0.01g precision)', 'Acid testing for gold karat verification', 'XRF (X-ray fluorescence) for non-destructive analysis', 'Magnet test for silver authenticity', 'Visual hallmark inspection'].map(item => (
-                  <li key={item}>
-                    <span className="pc-check">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="20 6 9 17 4 12"/>
-                      </svg>
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <section className="band precision" id="precision">
+        <div className="wrap precision-grid">
+          <div className="precision-plate reveal">
+            <span className="gk-border" aria-hidden="true" />
+            <PhotoPlate />
+          </div>
+          <div className="precision-copy reveal">
+            <span className="deco-label">Tested &amp; Transparent</span>
+            <h2 className="section-title">Weighed &amp; verified<br /><span className="gold-text">in front of you</span></h2>
+            <p className="lede">No guesswork and no sleight of hand. We test your items for purity and weigh them on a calibrated scale right in front of you, then price everything against the live spot rate &mdash; so you see exactly how your offer is calculated.</p>
+            <ul className="precision-list">
+              {VERIFY.map((item) => (
+                <li key={item}>
+                  <span className="pc-check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg></span> {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Steps */}
-      <section className="band">
+      <section className="band light">
         <div className="wrap">
-          <div className="band-head">
+          <div className="band-head reveal">
             <span className="deco-label center">How It Works</span>
-            <h2 className="section-title">From Your Drawer<br /><span className="gold-text">to Cash in Hand</span></h2>
+            <h2 className="section-title">Three simple steps</h2>
+            <div className="ornament"><i /><span className="dia" /><i /></div>
           </div>
           <div className="steps">
-            {[
-              { n: '01', title: 'Call or Text', body: 'Tell us what you have. We&rsquo;ll estimate a range over the phone so you know what to expect — no surprises.' },
-              { n: '02', title: 'We Come to You', body: 'We meet at a time and place convenient for you. Your home, a library, a coffee shop — your choice.' },
-              { n: '03', title: 'Test &amp; Offer', body: 'We test everything on the spot, show you the readings, and make you an offer based on live spot price.' },
-              { n: '04', title: 'Get Paid', body: 'Accept the offer and you walk away with cash immediately. No waiting, no checks.' },
-            ].map(({ n, title, body }) => (
-              <div key={n} className="step">
-                <div className="num">{n}</div>
-                <h3>{title}</h3>
-                <p dangerouslySetInnerHTML={{ __html: body }} />
-              </div>
-            ))}
+            <div className="step reveal">
+              <span className="num">01</span>
+              <span className="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></span>
+              <h3>Contact Us</h3>
+              <p>Call or text 240-825-9001 and tell us what you have.</p>
+            </div>
+            <div className="step reveal">
+              <span className="num">02</span>
+              <span className="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+              <h3>We Come To You</h3>
+              <p>We meet you, weigh your items openly, and give a fair quote.</p>
+            </div>
+            <div className="step reveal">
+              <span className="num">03</span>
+              <span className="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="1.6"/><circle cx="12" cy="12" r="2.7"/></svg></span>
+              <h3>Get Paid Cash</h3>
+              <p>Accept the offer and walk away with cash in hand &mdash; same visit.</p>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="contact">
-        <div className="wrap">
-          <div className="ornament"><i /><div className="dia" /><i /></div>
-          <h2>Have something to sell?<br /><span className="gold-text">Let&rsquo;s talk.</span></h2>
-          <a href="tel:12408259001" className="phone-btn">
-            <span className="label">Call or Text Anytime</span>
-            <span className="number">240-825-9001</span>
-          </a>
         </div>
       </section>
     </>

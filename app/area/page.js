@@ -1,85 +1,50 @@
 import DmvMapClient from '@/components/DmvMapClient';
 
 export const metadata = {
-  title: 'Service Area — Fairweight DMV',
-  description: 'We buy gold and silver across DC, Maryland, and Northern Virginia. Mobile service — we come to you.',
+  title: 'Service Area — Serving the Entire DMV | Fairweight',
+  description: 'Fairweight is a mobile gold and silver buyer serving Maryland, Washington DC and Northern Virginia. Based in Hyattsville, MD. Call or text 240-825-9001.',
 };
 
-const AREAS = {
-  Maryland: ['Hyattsville', 'College Park', 'Greenbelt', 'Beltsville', 'Silver Spring', 'Takoma Park', 'Riverdale Park', 'Lanham', 'Landover', 'Capitol Heights', 'Oxon Hill', 'Temple Hills', 'Suitland', 'Gaithersburg', 'Rockville', 'Germantown', 'Upper Marlboro', 'Bowie', 'Laurel', 'Annapolis'],
-  'Washington DC': ['Capitol Hill', 'Anacostia', 'Columbia Heights', 'Petworth', 'Brookland', 'Congress Heights', 'Georgetown', 'Shaw / U Street', 'Southeast DC', 'Northeast DC'],
-  Virginia: ['Alexandria', 'Arlington', 'Falls Church', 'Fairfax', 'Reston', 'Herndon', 'Centreville', 'Manassas', 'Woodbridge', 'Springfield', 'Annandale', 'Vienna', 'Ashburn', 'Sterling'],
-};
+const COLS = [
+  { state: 'Maryland', cities: ['Hyattsville', 'College Park', 'Silver Spring', 'Bethesda', 'Bowie', 'Laurel', 'Greenbelt', 'Rockville'] },
+  { state: 'Washington, DC', cities: ['Northwest (NW)', 'Northeast (NE)', 'Southwest (SW)', 'Southeast (SE)', 'Capitol Hill', 'Georgetown'] },
+  { state: 'Virginia', cities: ['Arlington', 'Alexandria', 'Fairfax', 'Falls Church', 'McLean', 'Vienna', 'Annandale'] },
+];
 
 export default function AreaPage() {
   return (
     <>
-      <div className="page-hero">
+      <section className="page-hero">
         <span className="deco-label center">Service Area</span>
-        <h1>We Serve the <span className="gold-text">Entire DMV</span></h1>
-        <p>Mobile gold &amp; silver buying across DC, Maryland, and Northern Virginia. We come to you — at your home, your office, or anywhere convenient.</p>
-        <div className="ornament"><i /><div className="dia" /><i /></div>
-      </div>
-
-      {/* Map + intro */}
-      <section className="band">
-        <div className="wrap">
-          <div className="area-grid">
-            <div className="area-aside">
-              <span className="deco-label">Where We Go</span>
-              <h2 className="section-title">Anywhere in<br /><span className="gold-text">DC · MD · VA</span></h2>
-              <p style={{ color: 'var(--muted)', marginTop: 18, lineHeight: 1.75 }}>
-                Based in Hyattsville, MD, we&rsquo;re centrally located to reach every corner of the metro. Prince George&rsquo;s County, Montgomery County, Howard County, Northern Virginia — call and we&rsquo;ll come.
-              </p>
-              <div className="map-badge" style={{ marginTop: 26, display: 'inline-flex', alignItems: 'center', gap: 12, padding: '14px 20px', border: '1px solid var(--line)', borderRadius: 3, background: 'var(--panel)' }}>
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/>
-                </svg>
-                <span style={{ fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cream)' }}>Hyattsville, MD — Home Base</span>
-              </div>
-              <p style={{ color: 'var(--muted)', fontSize: '0.88rem', marginTop: 18 }}>
-                Don&rsquo;t see your city? <a href="tel:12408259001" style={{ color: 'var(--gold)' }}>Call us</a> — if you&rsquo;re in the DMV, we&rsquo;ll probably come.
-              </p>
-            </div>
-            <div>
-              <DmvMapClient />
-            </div>
-          </div>
-        </div>
+        <h1>Serving the <span className="gold-text">entire DMV</span></h1>
+        <p>Maryland, Washington DC, and Northern Virginia &mdash; wherever you are in the metro, we&rsquo;ll come to you. Based in Hyattsville, MD.</p>
       </section>
 
-      {/* Area lists */}
-      <section className="band alt">
-        <div className="wrap">
-          <div className="band-head">
-            <span className="deco-label center">Coverage</span>
-            <h2 className="section-title">Cities &amp; Communities<br /><span className="gold-text">We Serve</span></h2>
+      <section className="band light" id="area">
+        <div className="wrap area-grid">
+          <div className="area-aside reveal">
+            <span className="deco-label">Where We Go</span>
+            <h2 className="section-title">We come to <span className="gold-text">you</span></h2>
+            <p className="lede" style={{ color: 'var(--muted)', marginTop: 20, fontSize: '1.02rem', lineHeight: 1.75 }}>Fully mobile service across the DMV &mdash; your home or a place you trust, on your schedule.</p>
+            <div className="map-badge">
+              <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              <span>Based in Hyattsville, MD</span>
+            </div>
           </div>
-          <div className="area-cols">
-            {Object.entries(AREAS).map(([state, cities]) => (
+          <div className="area-cols reveal">
+            {COLS.map(({ state, cities }) => (
               <div key={state} className="area-col">
                 <h4>{state}</h4>
-                <ul>
-                  {cities.map(c => <li key={c}>{c}</li>)}
-                </ul>
+                <ul>{cities.map((c) => <li key={c}>{c}</li>)}</ul>
               </div>
             ))}
-            <p className="area-note">
-              Don&rsquo;t see your city? <a href="tel:12408259001">Call us at 240-825-9001</a> — we&rsquo;ll let you know if we can make it out.
-            </p>
+            <p className="area-note">Don&rsquo;t see your neighborhood? We likely still cover it &mdash; <a href="tel:+12408259001">call or text 240-825-9001</a>.</p>
           </div>
         </div>
-      </section>
-
-      <section className="contact">
-        <div className="wrap">
-          <div className="ornament"><i /><div className="dia" /><i /></div>
-          <h2>We&rsquo;re nearby.<br /><span className="gold-text">Let us come to you.</span></h2>
-          <a href="tel:12408259001" className="phone-btn">
-            <span className="label">Call or Text Anytime</span>
-            <span className="number">240-825-9001</span>
-          </a>
-          <p className="loc">Hyattsville, MD · Serving DC, Maryland &amp; Northern Virginia</p>
+        <div className="wrap" style={{ marginTop: 42 }}>
+          <div className="map-shell reveal">
+            <DmvMapClient />
+          </div>
         </div>
       </section>
     </>

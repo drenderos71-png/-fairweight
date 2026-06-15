@@ -1,57 +1,115 @@
-import Link from 'next/link';
-
 export const metadata = {
-  title: 'About Fairweight — Our Story',
-  description: 'A family business built on honest scales and fair dealings. Learn the story behind Fairweight, mobile gold and silver buyers in the DMV.',
+  title: 'About — Honest Weight, Fair Dealings | Fairweight',
+  description: 'Fairweight is the DMV mobile gold and silver buyer, built on honest weight and fair dealings. Learn our story. Call or text 240-825-9001.',
 };
+
+const SCALES = (
+  <svg className="scales" width="38" height="38" viewBox="0 0 48 31">
+    <circle cx="24" cy="3" r="1.5"/><line x1="24" y1="4.4" x2="24" y2="24"/>
+    <line x1="8" y1="9" x2="40" y2="9"/><circle cx="24" cy="9" r="1.3"/>
+    <path d="M8 9 L4 16"/><path d="M8 9 L12 16"/><path d="M3.4 16 a4.6 4.6 0 0 0 9.2 0 Z"/>
+    <path d="M40 9 L36 16"/><path d="M40 9 L44 16"/><path d="M35.4 16 a4.6 4.6 0 0 0 9.2 0 Z"/>
+    <line x1="18" y1="24" x2="30" y2="24"/><line x1="20" y1="27" x2="28" y2="27"/>
+  </svg>
+);
+
+const Photo = ({ label }) => (
+  <div className="img-wrap" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '4/3', color: 'var(--muted)', fontSize: '0.72rem', letterSpacing: '0.1em' }}>{label}</div>
+);
 
 export default function AboutPage() {
   return (
     <>
-      <div className="page-hero">
-        <span className="deco-label center">Our Story</span>
-        <h1>Built on <span className="gold-text">Honest Weight</span></h1>
-        <p>A DMV family business founded on a simple principle: the scale never lies, and neither do we.</p>
-        <div className="ornament"><i /><div className="dia" /><i /></div>
-      </div>
+      <section className="page-hero">
+        <span className="deco-label center">About Fairweight</span>
+        <h1>Built on trust, <span className="gold-text">driven by integrity</span></h1>
+        <p>Fairweight was founded on a simple principle: an honest scale and a fair price. We bring transparency to buying and selling gold &amp; silver &mdash; and we come to you.</p>
+      </section>
 
-      {/* Story */}
-      <section className="band">
-        <div className="wrap">
-          <div className="story-grid">
-            <div className="story-media">
-              <div className="gk-border" />
-              <div className="img-wrap" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
-                PHOTO
+      <section className="band light">
+        <div className="wrap story-grid">
+          <div className="story-media reveal">
+            <span className="gk-border" aria-hidden="true" />
+            <Photo label="PHOTO" />
+          </div>
+          <div className="story-copy reveal">
+            <span className="deco-label">Who We Are</span>
+            <h2 className="section-title">A fair deal,<br /><span className="gold-text">every time</span></h2>
+            <p>Fairweight is the DMV&rsquo;s mobile gold &amp; silver buyer. We started Fairweight because too many people walk away from a sale unsure whether they got a fair shake. We do it differently &mdash; we weigh everything in front of you, explain exactly how the offer is built from the live market price, and never pressure anyone.</p>
+            <p>Whether it&rsquo;s a single broken chain or an entire estate, you get the same honest treatment, a free quote, and same-day cash. No storefront markups, no games &mdash; just fair dealings, brought to your door.</p>
+            <div className="meet">
+              <div className="portrait">
+                <span className="gk-border" aria-hidden="true" />
+                <div className="img-wrap" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '3/4', color: 'var(--muted)', fontSize: '0.62rem', letterSpacing: '0.1em' }}>PHOTO</div>
               </div>
-            </div>
-            <div className="story-copy">
-              <span className="deco-label">How It Started</span>
-              <h2 className="section-title">From Our Family<br />to Yours</h2>
-              <p>Fairweight was born out of a simple frustration: too many people in our community were getting shortchanged — by pawn shops that lowballed, by mail-in services that disappeared their valuables for weeks, and by buyers who wouldn&rsquo;t show their math.</p>
-              <p>We decided to do it differently. We come to you, we show you the scale, we explain every step, and we pay fairly — because in our family, your word and your weight are everything.</p>
-              <p>Based in Hyattsville, MD, we serve the entire DMV. Gold, silver, platinum — whatever you have, we&rsquo;ll tell you what it&rsquo;s worth and make you a fair offer on the spot.</p>
+              <div className="meet-who">
+                <span className="eyebrow-sm">Meet Your Buyer</span>
+                <h4>Your Brother&rsquo;s Name</h4>
+                <span className="role">Founder &amp; Buyer</span>
+                <p>You deal directly with me &mdash; not a salesperson. Honest assessments, fair prices, and I come to you anywhere in the DMV.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="band alt">
+      <section className="mobile-strip">
         <div className="wrap">
-          <div className="band-head">
-            <span className="deco-label center">By the Numbers</span>
-            <h2 className="section-title">Why People Choose Us</h2>
+          <span className="ms-ic">
+            <svg viewBox="0 0 24 24"><path d="M2 7h11v8H2z"/><path d="M13 10h4l3 3v2h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>
+          </span>
+          <span className="ms-text">
+            <strong>We Come To You &mdash; No Storefront Needed</strong>
+            <span>Fully mobile gold &amp; silver buying across the entire DMV. Free in-person quotes at your door.</span>
+          </span>
+          <a className="ms-cta" href="tel:+12408259001">Call or Text 240-825-9001</a>
+        </div>
+      </section>
+
+      <section className="band alt" id="why">
+        <div className="wrap why-grid">
+          <div className="why-aside reveal">
+            <span className="deco-label">Why Choose Fairweight</span>
+            <h2 className="section-title">&amp; most important,<br /><span className="gold-text">we are fair.</span></h2>
+            <p className="lede">No pressure, no games &mdash; just straightforward dealings you can trust, backed by an honest scale and a fair price.</p>
+            <div className="seal">
+              <span className="scales-wrap" aria-hidden="true">{SCALES}</span>
+              <span><span className="t1">Honest Weight.<br />Fair Dealings.</span><span className="t2">Our Promise</span></span>
+            </div>
           </div>
-          <div className="stats-grid">
+          <div className="why-list">
             {[
-              { big: '500+', lbl: 'Satisfied Sellers', sub: 'And counting' },
-              { big: '3', lbl: 'States Served', sub: 'DC · MD · VA' },
-              { big: '100%', lbl: 'Transparent Pricing', sub: 'We show our math' },
-              { big: '$0', lbl: 'Cost to Get a Quote', sub: 'Always free' },
+              { h: 'Free in-person quotes', p: 'We assess your items on the spot at no cost, with zero obligation to sell.' },
+              { h: 'Honest & fair pricing', p: 'Transparent weighing and competitive rates based on real, current value.' },
+              { h: 'Mobile across the DMV', p: 'We travel to you — convenient, private, and on your schedule.' },
+              { h: 'Instant cash payment', p: 'Get paid in full, in cash, the moment you accept our offer.' },
+            ].map(({ h, p }) => (
+              <div key={h} className="why-item reveal">
+                <span className="check">
+                  <svg viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></svg>
+                </span>
+                <div><h4 dangerouslySetInnerHTML={{ __html: h }} /><p>{p}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="band light" id="stats">
+        <div className="wrap">
+          <div className="band-head reveal">
+            <span className="deco-label center">Why People Call Us</span>
+            <h2 className="section-title">The Fairweight promise</h2>
+          </div>
+          <div className="stats-grid reveal">
+            {[
+              { big: '100%', lbl: 'Honest Weight', sub: 'Weighed in front of you' },
+              { big: '$0', lbl: 'In-Person Quotes', sub: 'Always free, no obligation' },
+              { big: 'Same-Day', lbl: 'Cash Paid', sub: 'The moment you accept' },
+              { big: 'All DMV', lbl: 'We Come To You', sub: 'MD · DC · VA' },
             ].map(({ big, lbl, sub }) => (
               <div key={lbl} className="stat">
-                <div className="big gold-text">{big}</div>
+                <div className="big">{big}</div>
                 <div className="lbl">{lbl}</div>
                 <div className="sub">{sub}</div>
               </div>
@@ -60,88 +118,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose */}
-      <section className="band">
-        <div className="wrap">
-          <div className="why-grid">
-            <div className="why-list">
-              {[
-                { h: 'We Come to You', p: 'No driving across town, no waiting in a shop. We meet at your home, a coffee shop, or anywhere you feel comfortable.' },
-                { h: 'Certified Scales', p: 'We use calibrated, certified digital scales and show you the reading. You see every gram.' },
-                { h: 'Live Spot Price', p: 'Our offers are based on the live spot price — not some number we invented. You can look it up on your phone.' },
-                { h: 'Same-Day Cash', p: 'Accept our offer and you have cash in hand before we leave. No checks, no delays, no wire transfer wait.' },
-                { h: 'No Pressure', p: 'Not happy with the offer? No problem. There&rsquo;s zero obligation and zero hard feelings.' },
-              ].map(({ h, p }) => (
-                <div key={h} className="why-item">
-                  <div className="check">
-                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--gold)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h4>{h}</h4>
-                    <p>{p}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="why-aside">
-              <span className="deco-label">Why Fairweight</span>
-              <h2 className="section-title">The Difference Is<br /><span className="gold-text">Transparency</span></h2>
-              <p className="lede">Most buyers profit by keeping you in the dark. We profit by treating you right so you come back — and send your friends.</p>
-              <div className="seal">
-                <div className="scales-wrap">
-                  <svg className="scales" viewBox="0 0 40 36" width="40" height="36" fill="none">
-                    <line x1="20" y1="4" x2="20" y2="32" strokeWidth="1.5" strokeLinecap="round"/>
-                    <line x1="6" y1="4" x2="34" y2="4" strokeWidth="1.5" strokeLinecap="round"/>
-                    <line x1="6" y1="4" x2="2" y2="14" strokeWidth="1.4" strokeLinecap="round"/>
-                    <line x1="34" y1="4" x2="38" y2="14" strokeWidth="1.4" strokeLinecap="round"/>
-                    <path d="M2 14 a8 8 0 0 0 8 0" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-                    <path d="M30 14 a8 8 0 0 0 8 0" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
-                    <line x1="14" y1="32" x2="26" y2="32" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                </div>
-                <div>
-                  <div className="t1">Fairweight Certified</div>
-                  <div className="t2">Honest Weight · Fair Dealings</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Scripture */}
       <section className="scripture">
-        <div className="wrap inner">
-          <svg className="scales-lg" viewBox="0 0 58 58" fill="none">
-            <circle cx="29" cy="29" r="27.5" stroke="#D8B23F" strokeWidth="1" opacity="0.4"/>
-            <line x1="29" y1="10" x2="29" y2="46" stroke="#D8B23F" strokeWidth="1.4" strokeLinecap="round"/>
-            <line x1="12" y1="11" x2="46" y2="11" stroke="#D8B23F" strokeWidth="1.4" strokeLinecap="round"/>
-            <line x1="12" y1="11" x2="7" y2="23" stroke="#D8B23F" strokeWidth="1.3" strokeLinecap="round"/>
-            <line x1="46" y1="11" x2="51" y2="23" stroke="#D8B23F" strokeWidth="1.3" strokeLinecap="round"/>
-            <path d="M7 23 a9 9 0 0 0 10 0" stroke="#D8B23F" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-            <path d="M41 23 a9 9 0 0 0 10 0" stroke="#D8B23F" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-            <line x1="22" y1="46" x2="36" y2="46" stroke="#D8B23F" strokeWidth="1.4" strokeLinecap="round"/>
-          </svg>
-          <span className="scripture-label">Our Foundation</span>
-          <blockquote>
-            &ldquo;A false balance is an abomination to the Lord,<br />
-            but a <span className="gold-text">just weight</span> is his delight.&rdquo;
-          </blockquote>
-          <cite>— Proverbs 11:1</cite>
-        </div>
-      </section>
-
-      <section className="contact">
-        <div className="wrap">
-          <div className="ornament"><i /><div className="dia" /><i /></div>
-          <h2>Ready to get<br /><span className="gold-text">a fair offer?</span></h2>
-          <p className="sub">Call or text anytime. Free appraisal, no pressure.</p>
-          <a href="tel:12408259001" className="phone-btn">
-            <span className="label">Call or Text Anytime</span>
-            <span className="number">240-825-9001</span>
-          </a>
+        <div className="wrap inner reveal">
+          <span className="scales-lg" aria-hidden="true">
+            <svg className="scales" width="58" height="58" viewBox="0 0 24 24"><path d="M12 6.2C10 4.6 7 4.4 4 5v13c3-.6 6-.4 8 1.2"/><path d="M12 6.2C14 4.6 17 4.4 20 5v13c-3-.6-6-.4-8 1.2"/><line x1="12" y1="6.2" x2="12" y2="19.2"/><path d="M6.4 8.4c1.4-.3 2.8-.3 3.8.2M6.4 11c1.4-.3 2.8-.3 3.8.2M13.8 8.6c1-.5 2.4-.5 3.8-.2M13.8 11.2c1-.5 2.4-.5 3.8-.2"/></svg>
+          </span>
+          <span className="scripture-label">Proverbs 11:1</span>
+          <blockquote>&ldquo;A false balance is abomination to the Lord: but a <span className="gold-text">just weight</span> is his delight.&rdquo;</blockquote>
+          <cite>Honest Weight &middot; Fair Dealings</cite>
         </div>
       </section>
     </>

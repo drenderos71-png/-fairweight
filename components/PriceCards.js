@@ -1,17 +1,15 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 const METALS = [
-  { key: 'XAU', label: 'Gold', img: '/gold-bars.png', cls: 'gold', fallback: 4400 },
-  { key: 'XAG', label: 'Silver', img: '/silver-bars.png', cls: 'silver', fallback: 75 },
-  { key: 'XPT', label: 'Platinum', img: '/platinum-bars.png', cls: 'platinum', fallback: 2000 },
+  { key: 'XAU', card: 'gold', label: 'Gold', img: '/gold-bars.png', fallback: 4400, cta: 'Sell Your Gold' },
+  { key: 'XAG', card: 'silver', label: 'Silver', img: '/silver-bars.png', fallback: 75, cta: 'Sell Your Silver' },
+  { key: 'XPT', card: 'platinum', label: 'Platinum', img: '/platinum-bars.png', fallback: 2000, cta: 'Sell Platinum' },
 ];
 
-export default function PriceCards({ onPrices }) {
-  const [unit, setUnit] = useState('oz');
+export default function PriceCards() {
+  const [unit, setUnit] = useState('ozt');
   const [prices, setPrices] = useState(null);
-  const prevRef = useRef({});
 
   useEffect(() => {
     async function fetch_() {
@@ -19,7 +17,6 @@ export default function PriceCards({ onPrices }) {
       const baseKey = 'fw_base_' + today;
       let base = {};
       try { base = JSON.parse(localStorage.getItem(baseKey) || '{}'); } catch {}
-
       const results = {};
       await Promise.all(METALS.map(async ({ key, fallback }) => {
         try {
@@ -27,55 +24,57 @@ export default function PriceCards({ onPrices }) {
           const d = await r.json();
           const price = d.price ?? d.Price ?? d.ask ?? fallback;
           if (!base[key]) base[key] = price;
-          results[key] = { price, chg: price - base[key] };
+          results[key] = { price, open: base[key] };
         } catch {
           if (!base[key]) base[key] = fallback;
-          results[key] = { price: fallback, chg: 0 };
+          results[key] = { price: fallback, open: base[key] };
         }
       }));
       try { localStorage.setItem(baseKey, JSON.stringify(base)); } catch {}
-      prevRef.current = results;
       setPrices(results);
-      onPrices?.(results);
     }
     fetch_();
     const id = setInterval(fetch_, 90000);
     return () => clearInterval(id);
-  }, [onPrices]);
+  }, []);
 
-  const fmtOz = (p) => '$' + Number(p).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fmtG = (p) => '$' + (p / 31.1035).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const fmt = (p) => unit === 'oz' ? fmtOz(p) : fmtG(p);
-  const fmtChg = (c) => (c >= 0 ? '+' : '') + fmtOz(unit === 'oz' ? c : c / 31.1035);
+  const conv = (p) => unit === 'g' ? p / 31.1035 : p;
+  const fmt = (p) => '$' + conv(p).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const pct = (price, open) => {
+    if (!open) return '+0.00%';
+    const c = ((price - open) / open) * 100;
+    return (c >= 0 ? '+' : '') + c.toFixed(2) + '%';
+  };
 
   return (
     <>
       <div className="spot-head-row">
-        <div className="spot-toggle">
-          <button className={unit === 'oz' ? 'on' : ''} onClick={() => setUnit('oz')}>Per oz</button>
-          <button className={unit === 'g' ? 'on' : ''} onClick={() => setUnit('g')}>Per gram</button>
+        <div className="spot-toggle" role="group" aria-label="Price unit">
+          <button type="button" className={unit === 'g' ? 'on' : ''} onClick={() => setUnit('g')}>Price in Grams</button>
+          <button type="button" className={unit === 'ozt' ? 'on' : ''} onClick={() => setUnit('ozt')}>Price in Ounces</button>
         </div>
       </div>
       <div className="price-cards">
-        {METALS.map(({ key, label, img, cls }) => {
+        {METALS.map(({ key, card, label, img, cta }) => {
           const p = prices?.[key];
+          const up = p ? p.price >= p.open : true;
           return (
-            <div key={key} className={`price-card ${cls}`}>
-              <div className="pc-bars">
-                <Image src={img} alt={label + ' bars'} width={150} height={120} style={{ objectFit: 'contain', objectPosition: 'left center' }} />
-              </div>
+            <div key={key} className={`price-card ${card}`}>
+              <div className="pc-bars"><img src={img} alt={`${label} bars`} /></div>
               <span className="pc-metal">{label}</span>
-              <div className="pc-price-row">
-                <span className="card-price">{p ? fmt(p.price) : '—'}</span>
-                {p && <span className={`card-chg ${p.chg >= 0 ? 'up' : 'down'}`}>{fmtChg(p.chg)}</span>}
+              <div className="pc-mid">
+                <div className="pc-price-row">
+                  <span className="card-price">{p ? fmt(p.price) : '$0'}</span>
+                  <span className={`card-chg ${up ? 'up' : 'down'}`}>({p ? pct(p.price, p.open) : '+0.00%'})</span>
+                </div>
+                <span className="pc-live">Live {label} Price</span>
               </div>
-              <span className="pc-live">Live · {unit === 'oz' ? 'Troy oz' : 'Gram'}</span>
-              <a href="tel:12408259001" className="pc-cta">Call to lock price →</a>
+              <a className="pc-cta" href="/contact">{cta} &rarr;</a>
             </div>
           );
         })}
       </div>
-      <p className="spot-note">Prices are indicative spot from a free public feed and refresh every 90 s. Call to lock your price.</p>
+      <p className="spot-note">Indicative &middot; USD per {unit === 'g' ? 'gram' : 'troy oz'} &middot; call to lock your price</p>
     </>
   );
 }
