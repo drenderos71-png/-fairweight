@@ -6,29 +6,28 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="hero" id="hero">
+      <section className="hero" id="hero" data-hero="photo">
         <div className="hero-bg-grad" aria-hidden="true" />
-        <div className="deco-frame" aria-hidden="true">
-          <span className="node tl" /><span className="node tr" />
-          <span className="node bl" /><span className="node br" />
-        </div>
-        <div className="wrap photo-inner">
-          <span className="deco-label">The DMV&rsquo;s Mobile Gold &amp; Silver Buyer</span>
-          <h1>We Buy &amp; Sell <span className="gold-text">Gold &amp; Silver</span></h1>
-          <p className="hero-lede">Honest weight, fair prices, and same-day cash &mdash; we come to you, anywhere in the DMV. Free in-person quotes, no pressure, no obligation.</p>
-          <span className="mobile-badge">
-            <svg viewBox="0 0 24 24"><path d="M2 7h11v8H2z"/><path d="M13 10h4l3 3v2h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>
-            We Come To You &middot; Fully Mobile
-          </span>
-          <div className="subhead">
-            <span>Mobile</span><span className="dot" /><span>Cash</span><span className="dot" /><span>Fair</span>
-          </div>
-          <div className="hero-actions">
-            <a className="btn-gold" href="tel:+12408259001">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
-              <span>Call or Text:&nbsp;<span className="num">240-825-9001</span></span>
-            </a>
-            <Link className="btn-ghost" href="/contact">Get a Free Quote</Link>
+        <div className="hero-variant v-photo">
+          <div className="photo-scrim" aria-hidden="true" />
+          <div className="wrap photo-inner">
+            <span className="deco-label">The DMV&rsquo;s Mobile Gold &amp; Silver Buyer</span>
+            <h1>We Buy &amp; Sell <span className="gold-text">Gold &amp; Silver</span></h1>
+            <p className="hero-lede">Honest weight, fair prices, and same-day cash &mdash; we come to you, anywhere in the DMV. Free in-person quotes, no pressure, no obligation.</p>
+            <span className="mobile-badge">
+              <svg viewBox="0 0 24 24"><path d="M2 7h11v8H2z"/><path d="M13 10h4l3 3v2h-7z"/><circle cx="6" cy="17" r="1.6"/><circle cx="17" cy="17" r="1.6"/></svg>
+              We Come To You &middot; Fully Mobile
+            </span>
+            <div className="subhead">
+              <span>Mobile</span><span className="dot" /><span>Cash</span><span className="dot" /><span>Fair</span>
+            </div>
+            <div className="hero-actions">
+              <a className="btn-gold" href="tel:+12408259001">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+                <span>Call or Text:&nbsp;<span className="num">240-825-9001</span></span>
+              </a>
+              <Link className="btn-ghost" href="/contact">Get a Free Quote</Link>
+            </div>
           </div>
         </div>
       </section>
