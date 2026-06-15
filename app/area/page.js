@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import DmvMapClient from '@/components/DmvMapClient';
+import { CITIES } from '@/lib/cities';
 
 export const metadata = {
   title: 'Service Area — Serving the Entire DMV | Fairweight',
@@ -44,6 +46,22 @@ export default function AreaPage() {
         <div className="wrap" style={{ marginTop: 42 }}>
           <div className="map-shell reveal">
             <DmvMapClient />
+          </div>
+        </div>
+      </section>
+
+      <section className="band alt">
+        <div className="wrap">
+          <div className="band-head reveal">
+            <span className="deco-label center">Maryland Cities</span>
+            <h2 className="section-title">We buy gold &amp; silver in your town</h2>
+          </div>
+          <div className="area-cols reveal" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            {CITIES.map((c) => (
+              <Link key={c.slug} href={`/sell-gold/${c.slug}`} className="city-link">
+                Sell gold in {c.name}
+              </Link>
+            ))}
           </div>
         </div>
       </section>

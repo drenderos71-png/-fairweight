@@ -2,15 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-
-const NAV = [
-  { label: 'Home', href: '/' },
-  { label: 'Live Prices', href: '/prices' },
-  { label: 'What We Buy', href: '/buy' },
-  { label: 'About', href: '/about' },
-  { label: 'Service Area', href: '/area' },
-  { label: 'Contact', href: '/contact' },
-];
+import { NAV_EN, NAV_ES, otherLangHref } from '@/lib/nav';
 
 const METALS = [
   { key: 'XAU', label: 'Gold' },
@@ -23,6 +15,9 @@ const FALLBACK = { XAU: 4400, XAG: 75, XPT: 2000, XPD: 1300 };
 
 export default function Header() {
   const pathname = usePathname();
+  const es = pathname.startsWith('/es');
+  const NAV = es ? NAV_ES : NAV_EN;
+  const altHref = otherLangHref(pathname);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [prices, setPrices] = useState(null);
@@ -83,7 +78,7 @@ export default function Header() {
   return (
     <header className={`nav${scrolled ? ' scrolled' : ''}`} id="nav">
       <div className="wrap nav-inner">
-        <Link className="brand" href="/" aria-label="Fairweight home">
+        <Link className="brand" href={es ? '/es' : '/'} aria-label="Fairweight home">
           <Emblem size="46px" />
           <span className="brand-word">
             <span className="wordmark">FAIRWEIGHT</span>
@@ -95,6 +90,9 @@ export default function Header() {
             <Link key={href} href={href} className={pathname === href ? 'active' : ''}>{label}</Link>
           ))}
         </nav>
+        <Link className="lang-toggle" href={altHref} aria-label={es ? 'Switch to English' : 'Cambiar a español'}>
+          {es ? 'EN' : 'ES'}
+        </Link>
         <a className="nav-cta" href="tel:+12408259001"><PhoneIcon /> 240-825-9001</a>
         <button
           className={`nav-toggle${menuOpen ? ' open' : ''}`}
@@ -118,7 +116,10 @@ export default function Header() {
             <Link key={href} href={href} className={pathname === href ? 'active' : ''} onClick={() => setMenuOpen(false)}>{label}</Link>
           ))}
         </nav>
-        <a className="btn-gold mobile-call" href="tel:+12408259001"><PhoneIcon /> Call or Text: 240-825-9001</a>
+        <Link className="lang-toggle mobile" href={altHref} onClick={() => setMenuOpen(false)}>
+          {es ? 'English' : 'Español'}
+        </Link>
+        <a className="btn-gold mobile-call" href="tel:+12408259001"><PhoneIcon /> {es ? 'Llame o Texto' : 'Call or Text'}: 240-825-9001</a>
       </div>
     </header>
   );

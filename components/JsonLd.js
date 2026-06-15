@@ -4,7 +4,7 @@ export default function JsonLd() {
     '@type': 'JewelryStore',
     name: 'Fairweight',
     description:
-      'Mobile gold & silver buyer serving the DMV — Washington DC, Maryland, and Northern Virginia. Honest weight, fair prices, same-day cash.',
+      'Mobile gold & silver buyer based in Hyattsville, serving Maryland — Prince George’s and Montgomery County — plus Northern Virginia. Honest weight, fair prices, same-day cash. Se habla español.',
     slogan: 'Honest Weight. Fair Dealings.',
     url: 'https://fairweightdmv.com',
     telephone: '+1-240-825-9001',
@@ -17,10 +17,13 @@ export default function JsonLd() {
       addressCountry: 'US',
     },
     areaServed: [
-      { '@type': 'AdministrativeArea', name: 'Washington, DC' },
+      { '@type': 'AdministrativeArea', name: 'Hyattsville, MD' },
+      { '@type': 'AdministrativeArea', name: "Prince George's County, MD" },
+      { '@type': 'AdministrativeArea', name: 'Montgomery County, MD' },
       { '@type': 'AdministrativeArea', name: 'Maryland' },
       { '@type': 'AdministrativeArea', name: 'Northern Virginia' },
     ],
+    knowsLanguage: ['en', 'es'],
     knowsAbout: ['Gold buying', 'Silver buying', 'Platinum buying', 'Bullion', 'Coins', 'Estate jewelry'],
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
