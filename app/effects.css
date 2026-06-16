@@ -130,7 +130,8 @@ html.js-anim .reveal.in { transform: none; filter: blur(0); }
 }
 
 /* ---- Price-card shine sweep + lift ---- */
-.price-card .pc-metal, .price-card .pc-mid, .price-card .pc-cta, .price-card .pc-bars { position: relative; z-index: 2; }
+.price-card .pc-metal, .price-card .pc-mid, .price-card .pc-cta { position: relative; z-index: 2; }
+.price-card .pc-bars { z-index: 2; }
 .price-card::after {
   content: ""; position: absolute; top: 0; left: -65%; width: 45%; height: 100%; z-index: 1;
   background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
