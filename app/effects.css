@@ -100,6 +100,95 @@
 .light .city-link { color: #221b10; }
 .city-link:hover { border-color: var(--gold); color: var(--gold); }
 
+/* ===== Luxury effects bundle ===== */
+
+/* ---- Tap ripple + haptics ---- */
+.tap-ripple {
+  position: absolute; border-radius: 50%; pointer-events: none; z-index: 3;
+  background: radial-gradient(circle, rgba(255,255,255,0.5), rgba(255,255,255,0.04) 70%);
+  mix-blend-mode: overlay; transform: scale(0); opacity: 0.8;
+  animation: tap-ripple 0.6s ease-out forwards;
+}
+@keyframes tap-ripple { to { transform: scale(1); opacity: 0; } }
+
+/* ---- Tilt-responsive gold headline (overrides the auto sheen) ---- */
+html.tilt-on .hero h1 .gold-text,
+html.tilt-on .page-hero h1 .gold-text {
+  animation: none;
+  background-position: var(--tilt, 50%) center;
+}
+
+/* ---- Depth scroll reveals (blur-to-sharp + lift) ---- */
+html.js-anim .reveal {
+  transform: translateY(30px) scale(0.985);
+  filter: blur(7px);
+  transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s ease;
+}
+html.js-anim .reveal.in { transform: none; filter: blur(0); }
+@media (prefers-reduced-motion: reduce) {
+  html.js-anim .reveal { filter: none; transform: none; }
+}
+
+/* ---- Price-card shine sweep + lift ---- */
+.price-card .pc-metal, .price-card .pc-mid, .price-card .pc-cta, .price-card .pc-bars { position: relative; z-index: 2; }
+.price-card::after {
+  content: ""; position: absolute; top: 0; left: -65%; width: 45%; height: 100%; z-index: 1;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.55), transparent);
+  transform: skewX(-20deg); pointer-events: none;
+  animation: card-shine 7s ease-in-out infinite;
+}
+.price-card.silver::after { animation-delay: 0.5s; }
+.price-card.platinum::after { animation-delay: 1s; }
+@keyframes card-shine { 0%, 72% { left: -65%; } 86%, 100% { left: 135%; } }
+@media (prefers-reduced-motion: reduce) { .price-card::after { display: none; } }
+
+/* ---- "What's it worth?" estimator ---- */
+.estimator {
+  max-width: 480px; margin: 0 auto; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 10px; padding: 30px 24px 26px; text-align: center;
+  box-shadow: 0 30px 70px -40px rgba(216,178,63,0.5);
+}
+.est-title { font-family: var(--serif); font-weight: 600; font-size: 2rem; color: var(--cream); margin-top: 12px; line-height: 1.05; }
+.est-sub { color: var(--muted); font-size: 0.92rem; margin-top: 8px; }
+.est-chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+.est-chip {
+  padding: 11px 20px; border: 1px solid var(--line); border-radius: 999px; background: transparent;
+  color: var(--cream); font-family: var(--sans); font-size: 0.86rem; letter-spacing: 0.03em;
+  cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; position: relative; overflow: hidden;
+}
+.est-chip.sm { padding: 9px 15px; font-size: 0.82rem; }
+.est-chip.on { background: var(--grad-gold); color: #15110a; border-color: transparent; font-weight: 600; }
+.est-karats { margin-top: 10px; }
+.est-sterling { margin-top: 16px; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.78rem; }
+.est-weight { margin-top: 24px; text-align: left; }
+.est-weight-row { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.74rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.est-grams b { color: var(--gold); font-size: 1.05rem; }
+.est-weight input[type="range"] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 5px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-deep)); outline: none;
+}
+.est-weight input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--grad-gold); border: 2px solid #15110a; box-shadow: 0 3px 10px rgba(0,0,0,0.5); cursor: pointer;
+}
+.est-weight input[type="range"]::-moz-range-thumb {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--grad-gold); border: 2px solid #15110a; cursor: pointer;
+}
+.est-value-wrap { margin-top: 26px; display: flex; flex-direction: column; gap: 5px; }
+.est-value-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+.est-value { font-family: var(--serif); font-weight: 600; font-size: clamp(2.8rem, 11vw, 3.6rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.est-cta { margin-top: 22px; width: 100%; }
+.est-note { font-size: 0.72rem; color: var(--muted); margin-top: 14px; line-height: 1.55; }
+
+/* ---- 3D gold bar ---- */
+.goldbar3d { position: relative; }
+.goldbar3d-canvas { width: 100%; height: 320px; cursor: grab; touch-action: pan-y; }
+.goldbar3d-canvas:active { cursor: grabbing; }
+.goldbar3d-hint {
+  display: block; text-align: center; margin-top: 8px;
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.85;
+}
+
 /* ---- Language toggle ---- */
 .lang-toggle {
   display: inline-flex; align-items: center; justify-content: center;

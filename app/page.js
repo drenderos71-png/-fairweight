@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import PriceCards from '@/components/PriceCards';
+import Estimator from '@/components/Estimator';
 
 export default function HomePage() {
   return (
@@ -43,6 +44,13 @@ export default function HomePage() {
             <span>Fully mobile gold &amp; silver buying across the entire DMV. Free in-person quotes at your door.</span>
           </span>
           <a className="ms-cta" href="tel:+12408259001">Call or Text 240-825-9001</a>
+        </div>
+      </section>
+
+      {/* Worth estimator */}
+      <section className="band">
+        <div className="wrap">
+          <Estimator lang="en" />
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const METALS = [
   { key: 'XAU', card: 'gold', label: 'Gold', labelEs: 'Oro', img: '/gold-bars.png', fallback: 4400 },
@@ -16,6 +16,25 @@ export default function PriceCards({ lang = 'en' }) {
   const t = STR[lang];
   const [unit, setUnit] = useState('ozt');
   const [prices, setPrices] = useState(null);
+  const [grow, setGrow] = useState(0);
+  const grewRef = useRef(false);
+
+  // odometer count-up the first time prices land
+  useEffect(() => {
+    if (!prices || grewRef.current) return;
+    grewRef.current = true;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { setGrow(1); return; }
+    const t0 = performance.now();
+    let raf;
+    const tick = (now) => {
+      const p = Math.min(1, (now - t0) / 900);
+      setGrow(1 - Math.pow(1 - p, 3));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    const safety = setTimeout(() => setGrow(1), 1100);
+    return () => { cancelAnimationFrame(raf); clearTimeout(safety); };
+  }, [prices]);
 
   useEffect(() => {
     async function fetch_() {
@@ -71,7 +90,7 @@ export default function PriceCards({ lang = 'en' }) {
               <span className="pc-metal">{name}</span>
               <div className="pc-mid">
                 <div className="pc-price-row">
-                  <span className="card-price">{p ? fmt(p.price) : '$0'}</span>
+                  <span className="card-price">{p ? fmt(p.price * grow) : '$0'}</span>
                   <span className={`card-chg ${up ? 'up' : 'down'}`}>({p ? pct(p.price, p.open) : '+0.00%'})</span>
                 </div>
                 <span className="pc-live">{t.live(name)}</span>

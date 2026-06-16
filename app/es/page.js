@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import PriceCards from '@/components/PriceCards';
+import Estimator from '@/components/Estimator';
 
 export const metadata = {
   title: 'Compramos y Vendemos Oro y Plata | Fairweight — Móvil, Maryland',
@@ -46,6 +47,12 @@ export default function HomeEs() {
             <span>Compra de oro y plata totalmente móvil en toda Maryland y el área. Cotizaciones gratis en su puerta.</span>
           </span>
           <a className="ms-cta" href="tel:+12408259001">Llame o Texto 240-825-9001</a>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="wrap">
+          <Estimator lang="es" />
         </div>
       </section>
 

@@ -6,6 +6,8 @@ import Footer from '@/components/Footer';
 import Reveal from '@/components/Reveal';
 import JsonLd from '@/components/JsonLd';
 import MobileCTA from '@/components/MobileCTA';
+import TapFx from '@/components/TapFx';
+import TiltGold from '@/components/TiltGold';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -74,6 +76,8 @@ export default function RootLayout({ children }) {
         <Footer />
         <MobileCTA />
         <Reveal />
+        <TapFx />
+        <TiltGold />
       </body>
     </html>
   );
