@@ -1,5 +1,6 @@
 import QuoteForm from '@/components/QuoteForm';
 import FaqAccordion from '@/components/FaqAccordion';
+import { FAQS_EN, faqSchema } from '@/lib/faqs';
 
 export const metadata = {
   title: 'Contact — Call or Text 240-825-9001 | Fairweight',
@@ -9,6 +10,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(FAQS_EN)) }} />
       <section className="page-hero">
         <span className="deco-label center">Get In Touch</span>
         <h1>Get a <span className="gold-text">free quote</span></h1>

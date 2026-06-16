@@ -1,5 +1,6 @@
 import QuoteForm from '@/components/QuoteForm';
 import FaqAccordion from '@/components/FaqAccordion';
+import { FAQS_ES, faqSchema } from '@/lib/faqs';
 
 export const metadata = {
   title: 'Contacto — Llame o Texto 240-825-9001 | Fairweight',
@@ -10,6 +11,7 @@ export const metadata = {
 export default function ContactoEs() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(FAQS_ES)) }} />
       <section className="page-hero">
         <span className="deco-label center">Contáctenos</span>
         <h1>Reciba una <span className="gold-text">cotización gratis</span></h1>

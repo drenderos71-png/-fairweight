@@ -47,9 +47,20 @@ export default async function Page({ params }) {
     url: `https://fairweightdmv.com/es/vender-oro/${city.slug}`,
   };
 
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://fairweightdmv.com/es' },
+      { '@type': 'ListItem', position: 2, name: 'Área de Servicio', item: 'https://fairweightdmv.com/es/area' },
+      { '@type': 'ListItem', position: 3, name: `Compramos Oro en ${city.name}`, item: `https://fairweightdmv.com/es/vender-oro/${city.slug}` },
+    ],
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <CityPage city={city} lang="es" />
     </>
   );
