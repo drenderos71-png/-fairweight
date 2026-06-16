@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 const PURITY = {
   '24k': 0.999, '22k': 0.9167, '18k': 0.75, '14k': 0.5833, '10k': 0.4167,
@@ -9,6 +9,8 @@ const UNIT_TO_OZT = { g: 1 / 31.1035, ozt: 1, dwt: 1 / 20, kg: 32.1507 };
 // Estimate reflects a share of pure-metal (spot) value, not full melt, so
 // visitors don't expect spot. One number to change if your payout shifts.
 const PAYOUT_RATE = 0.75;
+const SYMBOL = { gold: 'XAU', silver: 'XAG', platinum: 'XPT' };
+const FALLBACK = { gold: 4400, silver: 75, platinum: 2000 };
 
 const L = {
   en: {
@@ -38,6 +40,18 @@ export default function Calculator({ lang = 'en' }) {
   const [qty, setQty] = useState('10');
   const [unit, setUnit] = useState('g');
   const [purity, setPurity] = useState('14k');
+
+  // Auto-fill the spot field with the live current price for the selected
+  // metal, so the estimate is always 75% of gold's value right now. The user
+  // can still type their own number; changing metal refetches the live price.
+  useEffect(() => {
+    let on = true;
+    fetch(`https://api.gold-api.com/price/${SYMBOL[metal]}`)
+      .then((r) => r.json())
+      .then((d) => { if (on) setSpot(String(Math.round((d.price ?? FALLBACK[metal]) * 100) / 100)); })
+      .catch(() => { if (on) setSpot(String(FALLBACK[metal])); });
+    return () => { on = false; };
+  }, [metal]);
 
   const { value, sub } = useMemo(() => {
     const s = parseFloat(spot), q = parseFloat(qty);
