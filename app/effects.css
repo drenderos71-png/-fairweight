@@ -168,9 +168,20 @@ html.js-anim .reveal.in { transform: none; filter: blur(0); }
 .est-weight input[type="range"]::-moz-range-thumb {
   width: 26px; height: 26px; border-radius: 50%; background: var(--grad-gold); border: 2px solid #15110a; cursor: pointer;
 }
-.est-value-wrap { margin-top: 26px; display: flex; flex-direction: column; gap: 5px; }
+.est-value-wrap { margin-top: 26px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
 .est-value-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
 .est-value { font-family: var(--serif); font-weight: 600; font-size: clamp(2.8rem, 11vw, 3.6rem); line-height: 1; font-variant-numeric: tabular-nums; }
+/* loud "this is only an estimate" cue, right next to the number */
+.est-badge {
+  display: inline-flex; align-items: center; gap: 6px; align-self: center;
+  font-size: 0.64rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); background: rgba(216,178,63,0.12);
+  border: 1px solid var(--gold); border-radius: 999px; padding: 5px 13px; margin-bottom: 4px;
+}
+.est-badge::before { content: "≈"; font-size: 0.85rem; line-height: 1; }
+.est-caption { font-size: 0.9rem; font-weight: 500; color: var(--cream); margin-top: 8px; line-height: 1.45; max-width: 320px; }
+.calc-result .est-badge { align-self: center; }
+.calc-result .est-caption { color: var(--cream); }
 .est-cta { margin-top: 22px; width: 100%; }
 .est-note { font-size: 0.72rem; color: var(--muted); margin-top: 14px; line-height: 1.55; }
 

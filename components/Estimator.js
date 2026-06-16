@@ -20,6 +20,7 @@ const T = {
     sub: 'Slide your weight and karat for a live estimate.',
     gold: 'Gold', silver: 'Silver', sterling: 'Sterling .925',
     weight: 'Weight', grams: 'grams', est: 'Offers start around',
+    badge: 'Estimate only', caption: 'Not your final price — your real offer is set in person.',
     cta: 'Get your exact offer', note: 'A starting estimate based on today’s market rate — your exact offer depends on testing your items, and is often higher. In-person quotes are always free.',
   },
   es: {
@@ -27,6 +28,7 @@ const T = {
     sub: 'Deslice el peso y los quilates para un estimado en vivo.',
     gold: 'Oro', silver: 'Plata', sterling: 'Esterlina .925',
     weight: 'Peso', grams: 'gramos', est: 'Ofertas desde aprox.',
+    badge: 'Solo un estimado', caption: 'No es el precio final — su oferta real se define en persona.',
     cta: 'Obtenga su oferta exacta', note: 'Un estimado inicial según la tasa del mercado de hoy — su oferta exacta depende de la prueba de sus artículos, y a menudo es más alta. Las cotizaciones en persona siempre son gratis.',
   },
 };
@@ -110,8 +112,10 @@ export default function Estimator({ lang = 'en' }) {
       </div>
 
       <div className="est-value-wrap">
+        <span className="est-badge">{t.badge}</span>
         <span className="est-value-label">{t.est}</span>
         <span className="est-value gold-text">~{usd(display)}</span>
+        <span className="est-caption">{t.caption}</span>
       </div>
 
       <a className="btn-gold est-cta" href="tel:+12408259001">{t.cta}</a>

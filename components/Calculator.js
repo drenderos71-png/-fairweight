@@ -18,7 +18,7 @@ const L = {
     metal: 'Metal', gold: 'Gold', silver: 'Silver', platinum: 'Platinum',
     spot: 'Spot price (USD per troy oz)', amount: 'Amount', unit: 'Unit', purity: 'Purity',
     grams: 'Grams', ozt: 'Troy ounces', dwt: 'Pennyweight (dwt)', kg: 'Kilograms',
-    result: 'Offers start around', enter: 'Enter an amount to see an estimate.',
+    result: 'Offers start around', badge: 'Estimate only', caption: 'Not your final price — your real offer is set in person.', enter: 'Enter an amount to see an estimate.',
     disclaimer: 'A starting estimate based on today’s market rate — your exact offer depends on testing your items and is often higher. It excludes numismatic or designer premiums, and your in-person quote is always free.',
     cta: 'Get Your Exact Offer', at: 'at',
   },
@@ -27,7 +27,7 @@ const L = {
     metal: 'Metal', gold: 'Oro', silver: 'Plata', platinum: 'Platino',
     spot: 'Precio spot (USD por onza troy)', amount: 'Cantidad', unit: 'Unidad', purity: 'Pureza',
     grams: 'Gramos', ozt: 'Onzas troy', dwt: 'Pennyweight (dwt)', kg: 'Kilogramos',
-    result: 'Ofertas desde aprox.', enter: 'Ingrese una cantidad para ver un estimado.',
+    result: 'Ofertas desde aprox.', badge: 'Solo un estimado', caption: 'No es el precio final — su oferta real se define en persona.', enter: 'Ingrese una cantidad para ver un estimado.',
     disclaimer: 'Un estimado inicial según la tasa del mercado de hoy — su oferta exacta depende de la prueba de sus artículos y a menudo es más alta. Excluye primas numismáticas o de diseñador, y su cotización en persona siempre es gratis.',
     cta: 'Obtenga su Oferta Exacta', at: 'a',
   },
@@ -113,8 +113,10 @@ export default function Calculator({ lang = 'en' }) {
         </div>
       </form>
       <div className="calc-result">
+        <span className="est-badge">{t.badge}</span>
         <span className="rlabel">{t.result}</span>
         <span className="rvalue gold-text">{value}</span>
+        <span className="est-caption">{t.caption}</span>
         <span className="rsub">{sub}</span>
         <p className="disclaimer">{t.disclaimer}</p>
         <a className="btn-gold" href="tel:+12408259001">{t.cta}</a>
