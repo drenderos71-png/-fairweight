@@ -68,6 +68,21 @@
   .btn-gold::after { display: none; }
 }
 
+/* ---- Mobile hero: flow below the fixed header instead of centering ----
+   (tall content — especially Spanish — was clipping under the ticker) */
+@media (max-width: 760px) {
+  .hero { min-height: auto; padding: 0; }
+  .hero[data-hero="photo"] .v-photo {
+    position: static; inset: auto;
+    align-items: flex-start;
+    padding: 150px 0 54px;
+  }
+  .hero .photo-inner { gap: 20px; }
+  .hero h1, .v-photo h1 { font-size: clamp(2.6rem, 11vw, 3.6rem); }
+  /* keep the flanked label from colliding with the ticker */
+  .hero .deco-label { font-size: 0.62rem; letter-spacing: 0.22em; }
+}
+
 /* ---- City landing links ---- */
 .city-link {
   display: block; padding: 14px 16px; border: 1px solid var(--line-soft);
