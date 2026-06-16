@@ -127,6 +127,7 @@
     padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
     background: rgba(14, 11, 6, 0.92); backdrop-filter: blur(12px);
     border-top: 1px solid var(--line);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .mobile-cta a {
     display: inline-flex; align-items: center; justify-content: center; gap: 9px;
