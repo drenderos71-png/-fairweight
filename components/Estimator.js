@@ -9,21 +9,24 @@ const KARATS = [
   { k: '24k', f: 0.999 },
 ];
 const FALLBACK = { gold: 4400, silver: 75 };
+// What the estimate reflects, as a share of pure-metal (spot) value — keeps
+// people from expecting full melt. Change this one number to adjust.
+const PAYOUT_RATE = 0.75;
 
 const T = {
   en: {
     eyebrow: 'Try it', title: "What's it worth?",
     sub: 'Slide your weight and karat for a live estimate.',
     gold: 'Gold', silver: 'Silver', sterling: 'Sterling .925',
-    weight: 'Weight', grams: 'grams', est: 'Estimated value',
-    cta: 'Get your exact offer', note: 'Estimate of pure metal value at live spot. Your in-person quote is always free.',
+    weight: 'Weight', grams: 'grams', est: 'Estimated offer',
+    cta: 'Get your exact offer', note: 'A ballpark offer based on current market rates and purity — not full spot. Your exact, in-person quote is always free.',
   },
   es: {
     eyebrow: 'Pruébelo', title: '¿Cuánto vale?',
     sub: 'Deslice el peso y los quilates para un estimado en vivo.',
     gold: 'Oro', silver: 'Plata', sterling: 'Esterlina .925',
-    weight: 'Peso', grams: 'gramos', est: 'Valor estimado',
-    cta: 'Obtenga su oferta exacta', note: 'Estimado del valor del metal puro al precio en vivo. Su cotización en persona siempre es gratis.',
+    weight: 'Peso', grams: 'gramos', est: 'Oferta estimada',
+    cta: 'Obtenga su oferta exacta', note: 'Una oferta aproximada según las tasas del mercado y la pureza — no el precio spot completo. Su cotización exacta en persona siempre es gratis.',
   },
 };
 
@@ -53,7 +56,7 @@ export default function Estimator({ lang = 'en' }) {
 
   const purity = metal === 'silver' ? 0.925 : (KARATS.find((x) => x.k === karat)?.f ?? 0.5833);
   const price = metal === 'silver' ? spot.silver : spot.gold;
-  const target = (weight / 31.1035) * purity * price;
+  const target = (weight / 31.1035) * purity * price * PAYOUT_RATE;
 
   // animate display toward target
   useEffect(() => {
