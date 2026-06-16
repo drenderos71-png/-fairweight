@@ -126,12 +126,18 @@
     padding: 11px 14px calc(11px + env(safe-area-inset-bottom, 0px));
     background: #14110a;
     border-top: 1px solid var(--line);
-    box-shadow: 0 -10px 30px -12px rgba(0, 0, 0, 0.7);
-    transform: translateY(110%);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
+    transform: translateY(130%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    will-change: transform, opacity;
   }
-  .mobile-cta.show { transform: translateY(0); }
+  .mobile-cta.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: 0 -10px 30px -12px rgba(0, 0, 0, 0.7);
+  }
   .mobile-cta a {
     display: inline-flex; align-items: center; justify-content: center; gap: 9px;
     padding: 15px 12px; border-radius: 4px; font-weight: 600; font-size: 1.02rem;

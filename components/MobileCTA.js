@@ -8,11 +8,18 @@ export default function MobileCTA() {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    const hero = document.querySelector('.hero, .page-hero');
-    // Reveal once the visitor has scrolled past the first section. Using a
-    // scroll-position threshold (not IntersectionObserver) keeps it stable
-    // on iOS Safari, whose toolbar resizes the viewport while scrolling.
-    const threshold = () => (hero ? hero.offsetTop + hero.offsetHeight - 140 : 520);
+    // Reveal only once the visitor reaches the middle of the SECOND section
+    // (the first section has its own CTA). Scroll-position based — not an
+    // IntersectionObserver — so iOS Safari's resizing toolbar can't flicker it.
+    const absTop = (el) => el.getBoundingClientRect().top + (window.scrollY || window.pageYOffset || 0);
+    const threshold = () => {
+      const main = document.querySelector('main');
+      const sections = main ? Array.from(main.children).filter((el) => el.tagName === 'SECTION') : [];
+      const second = sections[1];
+      if (second) return absTop(second) + second.offsetHeight * 0.5;
+      const hero = document.querySelector('.hero, .page-hero');
+      return hero ? absTop(hero) + hero.offsetHeight : window.innerHeight;
+    };
 
     let cut = threshold();
     let raf = 0;
