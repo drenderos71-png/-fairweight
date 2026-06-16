@@ -8,7 +8,7 @@ const PURITY = {
 const UNIT_TO_OZT = { g: 1 / 31.1035, ozt: 1, dwt: 1 / 20, kg: 32.1507 };
 // Estimate reflects a share of pure-metal (spot) value, not full melt, so
 // visitors don't expect spot. One number to change if your payout shifts.
-const PAYOUT_RATE = 0.75;
+const PAYOUT_RATE = 0.70;
 const SYMBOL = { gold: 'XAU', silver: 'XAG', platinum: 'XPT' };
 const FALLBACK = { gold: 4400, silver: 75, platinum: 2000 };
 
@@ -18,8 +18,8 @@ const L = {
     metal: 'Metal', gold: 'Gold', silver: 'Silver', platinum: 'Platinum',
     spot: 'Spot price (USD per troy oz)', amount: 'Amount', unit: 'Unit', purity: 'Purity',
     grams: 'Grams', ozt: 'Troy ounces', dwt: 'Pennyweight (dwt)', kg: 'Kilograms',
-    result: 'Estimated Offer', enter: 'Enter an amount to see an estimate.',
-    disclaimer: 'A ballpark estimate based on current market rates and purity — not full spot value. It is not a final offer and excludes numismatic or designer premiums. Your in-person quote is always free.',
+    result: 'Offers start around', enter: 'Enter an amount to see an estimate.',
+    disclaimer: 'A starting estimate based on today’s market rate — your exact offer depends on testing your items and is often higher. It excludes numismatic or designer premiums, and your in-person quote is always free.',
     cta: 'Get Your Exact Offer', at: 'at',
   },
   es: {
@@ -27,8 +27,8 @@ const L = {
     metal: 'Metal', gold: 'Oro', silver: 'Plata', platinum: 'Platino',
     spot: 'Precio spot (USD por onza troy)', amount: 'Cantidad', unit: 'Unidad', purity: 'Pureza',
     grams: 'Gramos', ozt: 'Onzas troy', dwt: 'Pennyweight (dwt)', kg: 'Kilogramos',
-    result: 'Oferta Estimada', enter: 'Ingrese una cantidad para ver un estimado.',
-    disclaimer: 'Un estimado aproximado según las tasas del mercado y la pureza — no el valor spot completo. No es una oferta final y excluye primas numismáticas o de diseñador. Su cotización en persona siempre es gratis.',
+    result: 'Ofertas desde aprox.', enter: 'Ingrese una cantidad para ver un estimado.',
+    disclaimer: 'Un estimado inicial según la tasa del mercado de hoy — su oferta exacta depende de la prueba de sus artículos y a menudo es más alta. Excluye primas numismáticas o de diseñador, y su cotización en persona siempre es gratis.',
     cta: 'Obtenga su Oferta Exacta', at: 'a',
   },
 };
@@ -61,7 +61,7 @@ export default function Calculator({ lang = 'en' }) {
     const unitTxt = unit === 'g' ? 'g' : unit === 'ozt' ? 'oz' : unit === 'dwt' ? 'dwt' : 'kg';
     const metalTxt = lang === 'es' ? { gold: 'oro', silver: 'plata', platinum: 'platino' }[metal] : metal;
     return {
-      value: v.toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
+      value: '~' + v.toLocaleString('en-US', { style: 'currency', currency: 'USD' }),
       sub: `${q} ${unitTxt} · ${purity.toUpperCase()} ${metalTxt} ${t.at} $${s}/ozt`,
     };
   }, [metal, spot, qty, unit, purity, lang, t]);

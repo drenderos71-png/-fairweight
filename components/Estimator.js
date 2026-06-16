@@ -9,24 +9,25 @@ const KARATS = [
   { k: '24k', f: 0.999 },
 ];
 const FALLBACK = { gold: 4400, silver: 75 };
-// What the estimate reflects, as a share of pure-metal (spot) value — keeps
-// people from expecting full melt. Change this one number to adjust.
-const PAYOUT_RATE = 0.75;
+// Conservative share of current metal value used for the "offers start
+// around" figure. Low end of the real range, so the in-person offer usually
+// beats it (underpromise / overdeliver). One number to change if needed.
+const PAYOUT_RATE = 0.70;
 
 const T = {
   en: {
     eyebrow: 'Try it', title: "What's it worth?",
     sub: 'Slide your weight and karat for a live estimate.',
     gold: 'Gold', silver: 'Silver', sterling: 'Sterling .925',
-    weight: 'Weight', grams: 'grams', est: 'Estimated offer',
-    cta: 'Get your exact offer', note: 'A ballpark offer based on current market rates and purity — not full spot. Your exact, in-person quote is always free.',
+    weight: 'Weight', grams: 'grams', est: 'Offers start around',
+    cta: 'Get your exact offer', note: 'A starting estimate based on today’s market rate — your exact offer depends on testing your items, and is often higher. In-person quotes are always free.',
   },
   es: {
     eyebrow: 'Pruébelo', title: '¿Cuánto vale?',
     sub: 'Deslice el peso y los quilates para un estimado en vivo.',
     gold: 'Oro', silver: 'Plata', sterling: 'Esterlina .925',
-    weight: 'Peso', grams: 'gramos', est: 'Oferta estimada',
-    cta: 'Obtenga su oferta exacta', note: 'Una oferta aproximada según las tasas del mercado y la pureza — no el precio spot completo. Su cotización exacta en persona siempre es gratis.',
+    weight: 'Peso', grams: 'gramos', est: 'Ofertas desde aprox.',
+    cta: 'Obtenga su oferta exacta', note: 'Un estimado inicial según la tasa del mercado de hoy — su oferta exacta depende de la prueba de sus artículos, y a menudo es más alta. Las cotizaciones en persona siempre son gratis.',
   },
 };
 
@@ -110,7 +111,7 @@ export default function Estimator({ lang = 'en' }) {
 
       <div className="est-value-wrap">
         <span className="est-value-label">{t.est}</span>
-        <span className="est-value gold-text">{usd(display)}</span>
+        <span className="est-value gold-text">~{usd(display)}</span>
       </div>
 
       <a className="btn-gold est-cta" href="tel:+12408259001">{t.cta}</a>
