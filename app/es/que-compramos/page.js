@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import GoldBar3DClient from '@/components/GoldBar3DClient';
 
 export const metadata = {
   title: 'Qué Compramos — Oro, Plata y Platino | Fairweight',
@@ -59,8 +58,9 @@ export default function QueCompramosEs() {
 
       <section className="band precision" id="precision">
         <div className="wrap precision-grid">
-          <div className="precision-plate reveal" style={{ background: 'transparent', padding: 0, border: 0 }}>
-            <GoldBar3DClient lang="es" />
+          <div className="precision-plate reveal">
+            <span className="gk-border" aria-hidden="true" />
+            <div className="img-wrap" style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '4/3', color: 'var(--muted)', fontSize: '0.72rem', letterSpacing: '0.1em' }}>FOTO</div>
           </div>
           <div className="precision-copy reveal">
             <span className="deco-label">Probado y Transparente</span>

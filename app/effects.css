@@ -111,13 +111,6 @@
 }
 @keyframes tap-ripple { to { transform: scale(1); opacity: 0; } }
 
-/* ---- Tilt-responsive gold headline (overrides the auto sheen) ---- */
-html.tilt-on .hero h1 .gold-text,
-html.tilt-on .page-hero h1 .gold-text {
-  animation: none;
-  background-position: var(--tilt, 50%) center;
-}
-
 /* ---- Depth scroll reveals (blur-to-sharp + lift) ---- */
 html.js-anim .reveal {
   transform: translateY(30px) scale(0.985);
@@ -180,15 +173,6 @@ html.js-anim .reveal.in { transform: none; filter: blur(0); }
 .est-value { font-family: var(--serif); font-weight: 600; font-size: clamp(2.8rem, 11vw, 3.6rem); line-height: 1; font-variant-numeric: tabular-nums; }
 .est-cta { margin-top: 22px; width: 100%; }
 .est-note { font-size: 0.72rem; color: var(--muted); margin-top: 14px; line-height: 1.55; }
-
-/* ---- 3D gold bar ---- */
-.goldbar3d { position: relative; }
-.goldbar3d-canvas { width: 100%; height: 320px; cursor: grab; touch-action: pan-y; }
-.goldbar3d-canvas:active { cursor: grabbing; }
-.goldbar3d-hint {
-  display: block; text-align: center; margin-top: 8px;
-  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); opacity: 0.85;
-}
 
 /* ---- Language toggle ---- */
 .lang-toggle {

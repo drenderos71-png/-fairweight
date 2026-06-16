@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import GoldBar3DClient from '@/components/GoldBar3DClient';
 
 export const metadata = {
   title: 'What We Buy — Gold, Silver & Platinum | Fairweight',
@@ -62,8 +61,9 @@ export default function BuyPage() {
 
       <section className="band alt" id="bullion">
         <div className="wrap bullion-grid">
-          <div className="bullion-plate reveal" style={{ background: 'transparent', padding: 0, border: 0 }}>
-            <GoldBar3DClient lang="en" />
+          <div className="bullion-plate reveal">
+            <span className="gk-border" aria-hidden="true" />
+            <PhotoPlate />
           </div>
           <div className="bullion-copy reveal">
             <span className="deco-label">Gold Bars &amp; Coins</span>
