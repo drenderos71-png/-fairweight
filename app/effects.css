@@ -83,12 +83,11 @@
   .hero .hero-lede { font-size: 1.08rem; line-height: 1.8; }
   .hero .deco-label { font-size: 0.62rem; letter-spacing: 0.22em; }
 
-  /* declutter: drop the redundant tag line, and the in-hero phone
-     button (the sticky bottom bar already handles Call/Text). One
-     calm, primary action remains. */
+  /* declutter: drop the redundant tag line; keep the Call button and
+     the quote button as the two clear hero actions, full-width. */
   .hero .subhead { display: none; }
-  .hero .hero-actions .btn-gold { display: none; }
-  .hero .hero-actions { width: 100%; }
+  .hero .hero-actions { width: 100%; flex-direction: column; gap: 12px; }
+  .hero .hero-actions .btn-gold,
   .hero .hero-actions .btn-ghost { width: 100%; padding: 18px 28px; }
 }
 
@@ -118,25 +117,30 @@
   }
 }
 
-/* ---- Mobile sticky call/text bar ---- */
+/* ---- Mobile sticky call/text bar (solid, iOS-safe) ---- */
 .mobile-cta { display: none; }
 @media (max-width: 760px) {
   .mobile-cta {
     display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
-    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
-    background: rgba(14, 11, 6, 0.92); backdrop-filter: blur(12px);
+    padding: 11px 14px calc(11px + env(safe-area-inset-bottom, 0px));
+    background: #14110a;
     border-top: 1px solid var(--line);
+    box-shadow: 0 -10px 30px -12px rgba(0, 0, 0, 0.7);
+    transform: translateY(110%);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
   }
+  .mobile-cta.show { transform: translateY(0); }
   .mobile-cta a {
     display: inline-flex; align-items: center; justify-content: center; gap: 9px;
-    padding: 15px 12px; border-radius: 4px; font-weight: 600; font-size: 1rem;
+    padding: 15px 12px; border-radius: 4px; font-weight: 600; font-size: 1.02rem;
     letter-spacing: 0.04em;
   }
   .mobile-cta a svg { width: 19px; height: 19px; }
   .mobile-cta .mc-call { background: var(--grad-gold); color: #15110a; }
   .mobile-cta .mc-text { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
-  /* keep footer + final CTA clear of the fixed bar */
-  body { padding-bottom: 76px; }
+  /* leave room so the footer / final CTA never hide behind the bar */
+  body { padding-bottom: 78px; }
 }
+

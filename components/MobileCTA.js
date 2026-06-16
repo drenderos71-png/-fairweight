@@ -8,24 +8,39 @@ export default function MobileCTA() {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    // Hide while the hero (which has its own CTA) is on screen; reveal
-    // once the visitor scrolls into the second section and beyond.
     const hero = document.querySelector('.hero, .page-hero');
-    if (!hero) { setShown(true); return; }
+    // Reveal once the visitor has scrolled past the first section. Using a
+    // scroll-position threshold (not IntersectionObserver) keeps it stable
+    // on iOS Safari, whose toolbar resizes the viewport while scrolling.
+    const threshold = () => (hero ? hero.offsetTop + hero.offsetHeight - 140 : 520);
 
-    if (typeof IntersectionObserver === 'undefined') { setShown(true); return; }
-    const io = new IntersectionObserver(
-      ([e]) => setShown(e.intersectionRatio < 0.12),
-      { threshold: [0, 0.12, 0.5, 1] }
-    );
-    io.observe(hero);
-    return () => io.disconnect();
+    let cut = threshold();
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      // hysteresis so it never flickers right at the boundary
+      setShown((prev) => {
+        const y = window.scrollY || window.pageYOffset || 0;
+        if (prev) return y > cut - 80;
+        return y > cut;
+      });
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const onResize = () => { cut = threshold(); onScroll(); };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    onScroll();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [pathname]);
 
   return (
     <div
-      className="mobile-cta"
-      style={{ transform: shown ? 'translateY(0)' : 'translateY(120%)', pointerEvents: shown ? 'auto' : 'none' }}
+      className={`mobile-cta${shown ? ' show' : ''}`}
       role="region"
       aria-label={es ? 'Contacto rápido' : 'Quick contact'}
     >
